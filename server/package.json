@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "build": "npx tsc ./src/server.js",
+    "start": "node dist/server.js",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/server.js\""
+  },
+  "dependencies": {
+    "@types/ws": "^8.5.4",
+    "typescript": "^5.0.4",
+    "ws": "^8.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.16.0",
+    "concurrently": "^8.0.1",
+    "nodemon": "^2.0.22"
+  }
+}

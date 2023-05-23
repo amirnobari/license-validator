@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "build": "npx tsc ./src/client-1.js",
+    "start": "node dist/client-1.js",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/client-1.js\""
+  },
+  "dependencies": {
+    "@types/ws": "^8.5.4",
+    "dotenv": "^16.0.3",
+    "typescript": "^5.0.4",
+    "ws": "^8.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.16.0",
+    "concurrently": "^8.0.1",
+    "nodemon": "^2.0.22"
+  }
+}

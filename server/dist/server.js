@@ -1,7 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const ws_1 = require("ws");
-const wss = new ws_1.WebSocketServer({ port: 8080 });
+const dotenv_1 = require("dotenv");
+(0, dotenv_1.config)();
+const wss = new ws_1.WebSocketServer({
+    host: process.env.APP_HOSTNAME,
+    port: +process.env.APP_PORT
+});
 // آرایه‌ای برای ذخیره اطلاعات کلاینت‌ها
 const database = {
     'jhasdbawd51658hjkad54': {
@@ -11,8 +16,8 @@ const database = {
     },
     '7468s4f66asf6fa6fsa46saf': {
         ws: null,
-        username: "client_1",
-        licenseId: "5165kadbsfhjbe541ga"
+        username: "client_2",
+        licenseId: "as54d6asd4a4sd8asd685"
     }
 };
 wss.on('connection', function connection(ws, req) {

@@ -1,6 +1,12 @@
 import { WebSocketServer } from 'ws'
 
-const wss = new WebSocketServer( { port: 8080 } )
+import { config } from 'dotenv'
+config()
+
+const wss = new WebSocketServer( {
+    host: process.env.APP_HOSTNAME,
+    port: +( process.env.APP_PORT as string )
+} )
 
 // آرایه‌ای برای ذخیره اطلاعات کلاینت‌ها
 const database: any = {
@@ -12,10 +18,10 @@ const database: any = {
     ,
     '7468s4f66asf6fa6fsa46saf': {
         ws: null,
-        username: "client_1",
-        licenseId: "5165kadbsfhjbe541ga"
+        username: "client_2",
+        licenseId: "as54d6asd4a4sd8asd685"
     }
-};
+}
 
 wss.on( 'connection', function connection ( ws, req: any )
 {

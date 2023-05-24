@@ -18,7 +18,6 @@ const database = {
 wss.on('connection', function connection(ws, req) {
     ws.on('error', console.error);
     const userId = req.headers['userid'];
-    console.log(userId);
     let clientId = '';
     if (userId in database) {
         console.log('User found in database.');
@@ -34,6 +33,12 @@ wss.on('connection', function connection(ws, req) {
         });
         const message = Buffer.from(JsonMessage);
         ws.send(message);
+        ws.on('message', function message(message) {
+            const JsonData = new TextDecoder('utf-8').decode(message);
+            const data = JSON.parse(JsonData);
+            console.log('received:', data);
+            console.log(`User ${data.userId} Connected.`);
+        });
     }
     else {
         const JsonMessage = JSON.stringify({
@@ -44,16 +49,24 @@ wss.on('connection', function connection(ws, req) {
         // ارسال پیام اخطار به کلاینت
         ws.send(message);
         // قطع اتصال کلاینت
-        // ws.close();
+        ws.close();
     }
-    ws.on('message', function message(message) {
-        const JsonData = new TextDecoder('utf-8').decode(message);
-        const data = JSON.parse(JsonData);
-        console.log('received:', data);
-        console.log(`User ${data.userId} Connected.`);
-        // بررسی وجود شناسه کاربر در دیتابیس
-    });
     ws.on('close', () => {
         console.log(`Client ${clientId} has disconnected`);
     });
+    database[userId].ws = ws;
+    if (userId == '7468s4f66asf6fa6fsa46saf') {
+        for (const usersInfo in database) {
+            if (usersInfo == userId) {
+                const ws = database[usersInfo].ws;
+                if (ws) {
+                    const JsonMessage = JSON.stringify({
+                        msg: 'hiiii'
+                    });
+                    const message = Buffer.from(JsonMessage);
+                    ws.send(message);
+                }
+            }
+        }
+    }
 });

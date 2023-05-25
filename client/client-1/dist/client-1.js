@@ -8,15 +8,15 @@ const dotenv_1 = require("dotenv");
 (0, dotenv_1.config)();
 const ws = new ws_1.default(`${process.env.URL_CONNECTION}`, {
     headers: {
-        'userid': 'jhasdbawd51658hjkad54',
+        'userid': '7468s4f66asf6a4145256saf',
     }
 });
 ws.on('error', console.error);
 ws.on('open', function open() {
     const jsonData = JSON.stringify({
-        username: "client_1",
-        userId: "jhasdbawd51658hjkad54",
-        licenseId: "5165kadbsfhjbe541ga"
+        username: "client_4",
+        userId: "7468s4f66asf6a4145256saf",
+        licenseId: "as54d6asd4a415218asd685"
     });
     const bufferData = Buffer.from(jsonData);
     ws.send(bufferData);

@@ -23,9 +23,17 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = exports.UserSchema = void 0;
+exports.License = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
-exports.UserSchema = new mongoose_1.Schema({
-    username: { type: String, unique: true },
+const license_enum_1 = require("../../enums/license.enum");
+const details_time_price_license_model_1 = require("./details-time-price-license.model");
+const user_model_1 = require("./user.model");
+const LicenseSchema = new mongoose_1.Schema({
+    userId: { type: user_model_1.UserSchema },
+    licenseId: { type: String },
+    startedAt: { type: Date },
+    expiredAt: { type: Date },
+    status: { type: String, enum: license_enum_1.licenseStatusEnum },
+    detailsTimePriceLicense: { type: details_time_price_license_model_1.DetailsTamePriceLicense },
 });
-exports.User = mongoose_1.default.model('User', exports.UserSchema);
+exports.License = mongoose_1.default.model('License', LicenseSchema);

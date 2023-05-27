@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from 'mongoose'
 import { licenseStatusEnum } from '../../enums/license.enum'
-import { DetailsTamePriceLicense } from '../models/details-tame-price-license.model'
+import { DetailsTamePriceLicense } from './details-time-price-license.model'
 import { UserSchema } from './user.model'
 export interface ILicense extends Document {
   userId: typeof UserSchema

@@ -1,17 +1,12 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema, Document } from 'mongoose'
+import { License } from './license.model'
 
 export interface IUser extends Document {
-  username: string;
-  userId: string;
-  licenseId: string;
-  socket?: any; // اضافه کردن ویژگی socket
+  username: string
 }
 
-const UserSchema: Schema = new Schema({
-  username: { type: String, required: true },
-  userId: { type: String, required: true },
-  licenseId: { type: String, required: true },
-  socket: { type: Schema.Types.Mixed }, // اضافه کردن ویژگی socket به اسکیما
-});
+export const UserSchema: Schema = new Schema({
+  username: { type: String, unique: true },
+})
 
-export const User = mongoose.model<IUser>('User', UserSchema);
+export const User = mongoose.model<IUser>('User', UserSchema)
